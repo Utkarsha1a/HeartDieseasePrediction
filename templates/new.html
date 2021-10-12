@@ -1,0 +1,193 @@
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Heart Disease Prediction</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+<style>
+body {
+      font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+}
+
+.main {
+      <!-- background-image: url(https://1111arts.org/wp-content/uploads/2017/10/programming-code-abstract-technology-background-software-1024x756.jpg); -->
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #ffffff;
+    overflow-y: scroll;
+    font-size: 24px
+}
+
+.main::after {
+  content: "";
+    background-color: rgb(0, 0, 0,.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.main > h1,
+.main > p {
+  text-align: center;
+  font-family: 35px;
+  z-index: 2;
+  position: relative
+}
+
+.main-content {
+  background-color: rgb(27, 27, 50, .9);
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin: 0 auto;
+  margin-bottom: 40px;
+    border-radius: 5px;
+    z-index: 2;
+    position: relative;
+      box-shadow: 0px -1px 10px 5px purple;
+}
+
+#name, #age,#gender,#bp,#chl,#chest, #bloodsugar,#klevel, #hrate,#exer,#oldpeak,#slope, #ca,#thalassemia{
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding: 5px 10px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+    
+label[for=name], 
+label[for=age],
+label[for=gender],
+label[for=chest],
+label[for=bp],
+label[for=chl],
+label[for=bloodsugar],
+label[for=klevel],
+label[for=hrate],
+label[for=exer],
+label[for=oldpeak],
+label[for=slope],
+label[for=ca],
+label[for=thalassemia]{
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+
+#submit {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: #37af65;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 0;
+  color: #ffffff;
+  font-size: 20px;
+}</style>
+<body>
+
+<div class="main">
+ 
+  <h1 id="title">Heart Disease Prediction</h1>
+  
+   <div class="main-content">
+  <div class="form-content">
+    <form id="survey-form" action="{{ url_for('predict') }}" method="POST">
+      <label for="name" id="name-label">Name</label>
+      <input id="name" type="text"  name="name1" required placeholder="Enter your name" />
+
+	  <label  id="gender-label">Gender</label>
+	  <br />
+        <input type="radio" name="gender" checked id="male" value="1" /><label style="font-size: 16px" for="male">Male</label>
+        <input type="radio" name="gender" id="female" value="0"  /><label style="font-size: 16px" for="female">Female</label><br /><br />
+
+      <label for="age" id="age-label">Age</label>
+	  <input type="number" id="age" name="age" min="1" max="100" placeholder="Enter your age" required>
+
+      <label for="bp" id="bp-label">Blood pressure of the patient while resting(in mm/Hg) </label>
+       <input id="bp" type="number" name="bp" min="100" max="200" required placeholder="Enter Blood pressure" />
+
+	   <label for="chl" id="chl-label">Cholestrol level (mg/dl)</label>
+       <input id="chl" type="number" name="chl" min="100" max="200" required placeholder="Enter Cholestrol leve" />
+
+
+	  <label for="bloodsugar" id="bloodsugar-label">Blood sugar while fasting -(>120mg/: = 1, otherwise = 0)</label>
+       <input id="bloodsugar" type="number" name="bloodsugar" min="0" max="1" required placeholder="Enter Blood sugar" />
+
+
+	    <label for="klevel" id="klevel-label">Potassium level</label>
+       <input id="klevel" type="number" name="klevel" min="0" max="2" required placeholder="Enter Potassium level" />
+
+
+	   <label for="hrate" id="hrate-label">Heart rate</label>
+       <input id="hrate" type="number" name="hrate" min="70" max="220" required placeholder="Enter Potassium level" />
+
+	   <label for="exer" id="exer-label">Exercise induced angina</label>
+	   <select id="exer" name="exer" required>
+		  <option value="1">Yes</option>
+		  <option value="0">No</option>
+		</select>
+
+	   <label for="oldpeak" id="oldpeak-label">ST depression induced by exercise relative to rest</label>
+       <input id="oldpeak" type="number" name="oldpeak" min="70" max="220" required placeholder="Enter ST depression " />
+
+		<label for="slope" id="slope-label">Slope of the peak of the exercise ST Segment</label>
+       <select id="slope" name="slope" required>
+		  <option value="0">0</option>
+		   <option value="1">1</option>
+		    <option value="2">2</option>
+		</select>
+
+        <label id="ca-label">Number of major vessels</label>
+       <br />
+        <input type="radio" name="action" checked  value="0" /><label style="font-size: 16px" >0</label>
+        <input type="radio" name="action"  value="1"  /><label style="font-size: 16px"  >1</label>
+        <input type="radio" name="action"  value="2" /><label style="font-size: 16px" >2</label>
+        <input type="radio" name="action"  value="3" /><label style="font-size: 16px">3</label>
+        <input type="radio" name="action" value="4"  /><label style="font-size: 16px" >4</label>
+       <br /> <br />
+
+	   <label  id="thalassemia-label">Thalassemia</label>
+       <br />
+        <input type="radio" name="action1" checked  value="0" /><label style="font-size: 16px" >0</label>
+        <input type="radio" name="action1"  value="1"  /><label style="font-size: 16px" >1</label>
+        <input type="radio" name="action1"  value="2" /><label style="font-size: 16px" >2</label>
+        <input type="radio" name="action1"  value="3" /><label style="font-size: 16px">3</label>
+       <br /> <br />
+
+        <label  id="chest-label">Chest Pain</label>
+       <br />
+        <input type="radio" name="chest" checked  value="0" /><label style="font-size: 16px" >0</label>
+        <input type="radio" name="chest"  value="1"  /><label style="font-size: 16px" >1</label>
+        <input type="radio" name="chest"  value="2" /><label style="font-size: 16px" >2</label>
+        <input type="radio" name="chest"  value="3" /><label style="font-size: 16px">3</label>
+       <br /> <br />
+      <button type="submit" id="submit">Submit</button>
+        <p> </p>
+        <p  style="font-size: 12px; text-align:right">Machine Learning Web App</p>
+        <p  style="font-size: 12px; text-align:right">By:-  Utkarsha Attarde</p>
+    </form>
+  </div>
+  </div>
+</div>
+
+
+    
+</body></html>

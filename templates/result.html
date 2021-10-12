@@ -1,0 +1,128 @@
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Heart Disease Prediction</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+<style>
+body {
+      font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+}
+
+.main {
+      <!-- background-image: url(https://1111arts.org/wp-content/uploads/2017/10/programming-code-abstract-technology-background-software-1024x756.jpg); -->
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #ffffff;
+    overflow-y: scroll;
+    font-size: 24px
+}
+
+.main::after {
+  content: "";
+    background-color: rgb(0, 0, 0,.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.main > h1,
+.main > p {
+  text-align: center;
+  font-family: 35px;
+  z-index: 2;
+  position: relative
+}
+
+.main-content {
+  background-color: rgb(27, 27, 50, .9);
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin: 0 auto;
+  margin-bottom: 40px;
+    border-radius: 5px;
+    z-index: 2;
+    position: relative;
+      box-shadow: 0px -1px 10px 5px purple;
+}
+
+#name, #age,#gender,#bp,#chl,#chest, #bloodsugar,#klevel, #hrate,#exer,#oldpeak,#slope, #ca,#thalassemia{
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding: 5px 10px;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+label[for=name],
+label[for=age],
+label[for=gender],
+label[for=chest],
+label[for=bp],
+label[for=chl],
+label[for=bloodsugar],
+label[for=klevel],
+label[for=hrate],
+label[for=exer],
+label[for=oldpeak],
+label[for=slope],
+label[for=ca],
+label[for=thalassemia]{
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+
+#submit {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: #37af65;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 0;
+  color: #ffffff;
+  font-size: 20px;
+}</style>
+<body>
+
+<div class="main">
+
+  <h1 id="title">Heart Disease Prediction</h1>
+   <div class="main-content">
+  <div class="form-content">
+        <div   style="font-size: 16px;text-align:center;">
+			{% if prediction==1 %}
+				<span style="font-size: 16px;text-align:center;">So Sorry! You have Heart Diesease.</span>
+			{% elif prediction==0 %}
+				<span style="font-size: 16px;text-align:center;">Great! You DON'T have Heart Diesease.</span>
+			{% endif %}
+		</div><br>
+      <img style="display: block;width: 50%; margin-left: auto; margin-right: auto;" src="{{ url_for('static', filename='Capture1.JPG') }}" alt=" Image">
+      <br>
+        <p> </p>
+        <p  style="font-size: 12px; text-align:right">Machine Learning Web App</p>
+        <p  style="font-size: 12px; text-align:right">By:-  Utkarsha Attarde</p>
+  </div>
+  </div>
+</div>
+
+
+
+</body></html>
