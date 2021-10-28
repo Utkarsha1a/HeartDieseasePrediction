@@ -8,4 +8,3 @@ Heart disease affects millions of people, and it remains the cause of death in t
 # Deployment Architecture:
 The backend part of the application was made using Flask and for the frotend part HTML and CSS was used.The file "app.py" contains the entire flask code and inside the templates folder, "new.html" contains the homepage and "result.html" contains the result page.
 
-# Glimpse of the application:
